@@ -10,17 +10,7 @@ env:
 
 jobs:
   build-and-push-image:
-    runs-on: ${{ matrix.os.host }}
-    strategy:
-      matrix:
-        os:
-          - name: openbsd
-            architecture: arm64
-            host: ubuntu-latest
-          - name: netbsd
-            architecture: x86-64
-            host: ubuntu-latest
-
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
