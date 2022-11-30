@@ -1,14 +1,26 @@
 services:
-  softioc:
-    image: epics-base:1.0
+  softioc_a:
+    build:
+      context: .
+      dockerfile: Dockerfile
     tty: true
     stdin_open: true
-    hostname: softioc
-    container_name: softioc
-    ports:
-      - "5065:5065/tcp"
-      - "5064:5064/tcp"
-      - "5065:5065/udp"
-      - "5064:5064/udp"
+    hostname: softioca
+    container_name: softioca
     volumes:
-      - ./:/db
+      - ./softioc_a.db:/db/softioc.db
+  softioc_b:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    hostname: softiocb
+    container_name: softiocb
+    volumes:
+      - ./softioc_b.db:/db/softioc.db
+  client:
+    image: epics-base:1.0
+    entrypoint: /bin/sh
+    stdin_open: true
+    tty: true 
