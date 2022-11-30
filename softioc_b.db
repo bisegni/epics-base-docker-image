@@ -1,0 +1,5 @@
+record(ao,"channel:b") {
+        field(DTYP,"Soft Channel")
+        field(HHSV,MAJOR)
+        field(HIHI,1)
+}
