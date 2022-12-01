@@ -16,10 +16,11 @@ spec:
     spec:
       containers:
       - name: softioc-a
-        image: ghcr.io/bisegni/epics-base-docker-image:main
+        image: ghcr.io/bisegni/epics-base-docker-image:arm
         volumeMounts:
-            - name: config
-              mountPath: /epics-config
+            - name:  config-volume
+              mountPath: /epics-config/softioc.db
+              subPath: softioc-a.db
         args:
           - "-d" 
           - "/epics-config/softioc.db"
@@ -34,11 +35,7 @@ spec:
           protocol: UDP
       volumes:
       # You set volumes at the Pod level, then mount them into containers inside that Pod
-      - name: config
+      - name: config-volume
         configMap:
           # Provide the name of the ConfigMap you want to mount.
           name: softioc-a
-          # An array of keys from the ConfigMap to create as files
-          items:
-          - key: "softioc-a.db"
-            path: "sotfioc.db"
