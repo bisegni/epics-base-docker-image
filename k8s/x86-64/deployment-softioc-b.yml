@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: softioc-b-deployment
+  labels:
+    kind: epics-ioc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: softioc-b
+  template:
+    metadata:
+      labels:
+        app: softioc-b
+    spec:
+      containers:
+      - name: softioc-b
+        image: ghcr.io/bisegni/epics-base-docker-image:main
+        volumeMounts:
+            - name:  config-volume
+              mountPath: /epics-config/softioc.db
+              subPath: softioc-b.db
+        args:
+          - "-S"
+          - "-d" 
+          - "/epics-config/softioc.db"
+        ports:
+        - containerPort: 5065
+          protocol: TCP
+        - containerPort: 5065
+          protocol: UDP
+        - containerPort: 5064
+          protocol: TCP
+        - containerPort: 5064
+          protocol: UDP
+      volumes:
+      # You set volumes at the Pod level, then mount them into containers inside that Pod
+      - name: config-volume
+        configMap:
+          # Provide the name of the ConfigMap you want to mount.
+          name: softioc-b
