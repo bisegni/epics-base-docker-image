@@ -32,4 +32,4 @@ COPY launch.sh /opt
 COPY env.sh /opt
 
 ENTRYPOINT ["/opt/launch.sh"]
-CMD ["-d", "/db/softioc.db"]
+CMD ["-S", "-d", "/db/softioc.db"]
