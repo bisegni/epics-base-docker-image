@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: softioc-ramp-a
+  labels:
+    kind: epics-ioc
+data:
+  softioc-ramp-a.db: |
+    record(ao, "channel:ramp:a:limit")
+    {
+        field(DRVH, "100")
+        field(DOL, "10")
+        field(PINI, "YES")
+    }
+
+    record(calc, "channel:ramp:a:ramp")
+    {
+        field(SCAN, "1 second")
+        field(INPA, "channel:ramp:a:ramp")
+        field(INPB, "channel:ramp:a:limit")
+        field(CALC, "A<B ? A+5 : 0")
+        field(HIGH, "90")
+        field(HSV, "MAJOR")
+    }

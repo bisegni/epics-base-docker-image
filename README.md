@@ -18,11 +18,11 @@ in another terminal execute:
 - caget channel:b
 
 ### kubernetes example
-This illustrate the usage of two differente IOC software channel pods within K8S:
+This illustrate the usage of two differente IOC software channel pods within K8S/{arm|x86_64}:
 
 - create configuration and deployment
 ```
-    kubectl apply -f k8s
+    kubectl apply -f k8s/{arm|x86_64}
 ```
 - show all running pods:
 ``` 

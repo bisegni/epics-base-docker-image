@@ -19,6 +19,16 @@ services:
     container_name: softiocb
     volumes:
       - ./softioc_b.db:/db/softioc.db
+  softioc_ramp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    hostname: softiocramp
+    container_name: softiocramp
+    volumes:
+      - ./softioc_ramp.db:/db/softioc.db
   client:
     image: epics-base:1.0
     entrypoint: /bin/sh
