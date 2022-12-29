@@ -9,6 +9,7 @@ services:
     container_name: softioca
     volumes:
       - ./softioc_a.db:/db/softioc.db
+
   softioc_b:
     build:
       context: .
@@ -19,6 +20,7 @@ services:
     container_name: softiocb
     volumes:
       - ./softioc_b.db:/db/softioc.db
+
   softioc_ramp:
     build:
       context: .
@@ -29,8 +31,9 @@ services:
     container_name: softiocramp
     volumes:
       - ./softioc_ramp.db:/db/softioc.db
-  client:
-    image: epics-base:1.0
-    entrypoint: /bin/sh
-    stdin_open: true
-    tty: true 
+
+  websocket-gateway:
+    image: ghcr.io/bisegni/sciarc:main
+    command: gateway
+    ports:
+      - 8000:8000

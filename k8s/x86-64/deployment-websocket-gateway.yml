@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websocket-gateway-deployment
+  labels:
+    app: websocket-gateway
+    kind: epics-ioc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: websocket-gateway
+  template:
+    metadata:
+      labels:
+        app: websocket-gateway
+    spec:
+      containers:
+      - name: websocket-gateway
+        image: ghcr.io/bisegni/sciarc:main
+        args:
+          - "gateway"
+        ports:
+        - containerPort: 8000
+          protocol: TCP
