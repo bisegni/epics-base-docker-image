@@ -12,7 +12,7 @@ ENV USER=epics \
 
 RUN yum update -y
 
-RUN yum install -y wget gcc-c++ readline-devel perl-devel make
+RUN yum install -y wget gcc-c++ readline-devel perl-devel make tmux
 RUN wget --no-check-certificate https://www.aps.anl.gov/epics/download/base/base-$EPICS_VER.tar.gz \
     && tar -zxvf base-$EPICS_VER.tar.gz \
     && mkdir $WORK_DIR \
@@ -32,4 +32,4 @@ COPY launch.sh /opt
 COPY env.sh /opt
 
 ENTRYPOINT ["/opt/launch.sh"]
-CMD ["-S", "-d", "/db/softioc.db"]
+CMD ["/db/softioc.db"]

@@ -1,3 +1,4 @@
 #!/bin/sh
 source /opt/env.sh
-softIocPVA "$@"
+tmux new-session -d "softIocPVA -d $1"
+sleep infinity & wait

@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    tty: true
-    stdin_open: true
+    # tty: true
+    # stdin_open: true
     hostname: softioca
     container_name: softioca
     volumes:
@@ -14,8 +14,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    tty: true
-    stdin_open: true
+    # tty: true
+    # stdin_open: true
     hostname: softiocb
     container_name: softiocb
     volumes:
@@ -25,8 +25,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    tty: true
-    stdin_open: true
+    # tty: true
+    # stdin_open: true
     hostname: softiocramp
     container_name: softiocramp
     volumes:
