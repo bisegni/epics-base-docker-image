@@ -37,5 +37,23 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: latest
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and push Docker ca
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          repository: docker/ca
+          tags: ca-ioc
+          path: src/go/server
+
+      - name: Build and push Docker pv
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          repository: docker/ca
+          tags: pv-ioc
+          path: src/go/server
